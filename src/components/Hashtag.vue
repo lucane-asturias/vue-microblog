@@ -13,6 +13,7 @@ export default {
     }
 
     return {
+      setHashtag
     }
   },
   props: {

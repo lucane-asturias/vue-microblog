@@ -28,9 +28,9 @@ export default {
   name: 'App',
   setup() {
     const currentHashtag = ref()
-
     const setHashtag = (tag) => {
       // update ref
+      currentHashtag.value = tag
     }
 
     return { // return from the setup

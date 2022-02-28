@@ -24,6 +24,7 @@ export default {
   },
   setup(props, ctx) {
     const setHashtag = (tag) => {
+      console.log(tag)
       ctx.emit('setHashtag', tag)
     }
 
