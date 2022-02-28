@@ -1,0 +1,35 @@
+<template>
+  <div>
+    <button>
+      {{ post.likes }}
+    </button>
+    <hashtag 
+      v-for="tag in post.hashtags"
+      :hashtag="tag"
+      @setHashtag="setHashtag"
+    />
+  </div>
+</template>
+
+<script>
+import Hashtag from './Hashtag.vue'
+
+export default {
+  name: 'Controls',
+  components: { Hashtag },
+  props: {
+    post: {
+      type: Object
+    }
+  },
+  setup(props, ctx) {
+    const setHashtag = (tag) => {
+      ctx.emit('setHashtag', tag)
+    }
+
+    return {
+      setHashtag
+    }
+  },
+}
+</script>
