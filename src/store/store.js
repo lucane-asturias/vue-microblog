@@ -1,4 +1,4 @@
-import { reactive } from 'vue'
+import { reactive, computed } from 'vue'
 import { posts_data } from './posts_data'
 
 // central functionality for the posts
@@ -9,6 +9,19 @@ class Store {
       posts: posts_data,
       currentHashtag: null
     })
+  }
+
+  get filteredPosts() {
+    // update dynamically when change values
+    return computed(() => {
+      if (!this.state.currentHashtag) {
+        return this.state.posts;
+      }
+      console.log(this.state.posts)
+      return this.state.posts.filter(
+        post => post.hashtags.toString().includes(this.state.currentHashtag)
+      )
+    });
   }
 
   setHashtag(tag) {
@@ -25,7 +38,7 @@ class Store {
       return;
     }
 
-    findedPost.likes += 1
+    findedPost.likes++
   }
 }
 

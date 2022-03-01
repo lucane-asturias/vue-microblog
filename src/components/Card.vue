@@ -31,7 +31,6 @@ export default {
 
 .title, .content, .description {
   padding: 16px;
-  text-transform: capitalize;
   text-align: center;
 }
 

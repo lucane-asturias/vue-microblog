@@ -1,12 +1,8 @@
 <template>
   <div>
+    <div>{{ post.likes }}</div>
     <div class="like">
-      <button @click="like">
-        Like
-      </button>
-      <div>
-        {{ post.likes }}
-      </div>
+      <button @click="handleLike">❤ Like</button> 
     </div>
     <hashtag 
       v-for="tag in post.hashtags"
@@ -21,21 +17,24 @@ import { store } from '../store/store'
 
 export default {
   name: 'Controls',
-  setup(props) {
-    const like = () => {
-      store.incrementLike(props.post)
-    }
-
-    return { 
-      like
-    }
+  components: { 
+    Hashtag 
   },
-  components: { Hashtag },
   props: {
     post: {
       type: Object
     }
   },
+
+  setup(props) {
+    const handleLike = () => {
+      store.incrementLike(props.post)
+    }
+
+    return { 
+      handleLike
+    }
+  }
 }
 </script>
 
