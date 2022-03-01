@@ -29,7 +29,6 @@ export const posts_data = [
     hashtags: [
       'vue',
       'vue-router',
-      'composition-api'
     ]
   },
   {

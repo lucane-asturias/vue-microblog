@@ -5,11 +5,14 @@
 </template>
 
 <script>
+import { store } from '../store/store'
+
 export default {
   name: 'Hashtag',
   setup(props, ctx) {
+
     const setHashtag = () => {
-      ctx.emit('setHashtag', props.hashtag)
+      store.setHashtag(props.hashtag)
     }
 
     return {

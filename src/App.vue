@@ -1,6 +1,6 @@
 <template>
   <card 
-    v-for="post in store.state.posts"
+    v-for="post in filteredPosts"
   >
     <template v-slot:title>
       {{ post.title }}
@@ -11,15 +11,14 @@
     </template>
 
     <template v-slot:description>
-      <controls :post="post" @setHashtag="setHashtag"
+      <controls :post="post"
  />
     </template>
   </card>
-  {{ currentHashtag }}
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { store } from './store/store'
 import Card from './components/Card.vue'
 import Controls from './components/Controls.vue';
@@ -27,16 +26,18 @@ import Controls from './components/Controls.vue';
 export default {
   name: 'App',
   setup() {
-    const currentHashtag = ref()
-    const setHashtag = (tag) => {
-      // update ref
-      currentHashtag.value = tag
-    }
+    const filteredPosts = computed(() => {
+      if (!store.state.currentHashtag) {
+        return store.state.posts;
+      }
+
+      return store.state.posts.filter(
+        post => post.hashtags.includes(store.state.currentHashtag)
+      )
+    });
 
     return { // return from the setup
-      store,
-      setHashtag,
-      currentHashtag
+      filteredPosts,
     }
   },
   components: {
