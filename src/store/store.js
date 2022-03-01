@@ -17,7 +17,7 @@ class Store {
       if (!this.state.currentHashtag) {
         return this.state.posts;
       }
-      console.log(this.state.posts)
+
       return this.state.posts.filter(
         post => post.hashtags.toString().includes(this.state.currentHashtag)
       )
